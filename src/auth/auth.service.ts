@@ -34,17 +34,12 @@ export class AuthService {
     this.accessSecret = this.configService.getOrThrow<string>('JWT_SECRET');
     this.accessExpiresIn = this.configService.getOrThrow<
       JwtSignOptions['expiresIn']
-    >(
-      'JWT_ACCESS_EXPIRES_IN',
-    );
-    this.refreshSecret = this.configService.getOrThrow<string>(
-      'JWT_REFRESH_SECRET',
-    );
+    >('JWT_ACCESS_EXPIRES_IN');
+    this.refreshSecret =
+      this.configService.getOrThrow<string>('JWT_REFRESH_SECRET');
     this.refreshExpiresIn = this.configService.getOrThrow<
       JwtSignOptions['expiresIn']
-    >(
-      'JWT_REFRESH_EXPIRES_IN',
-    );
+    >('JWT_REFRESH_EXPIRES_IN');
   }
 
   async register(registerDto: RegisterDto): Promise<PublicUser> {
