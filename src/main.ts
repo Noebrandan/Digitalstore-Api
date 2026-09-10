@@ -1,8 +1,36 @@
+import helmet from 'helmet';
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  app.use(helmet());
+
+  const corsOrigin =
+    process.env.CORS_ORIGIN ??
+    (process.env.NODE_ENV === 'production'
+      ? undefined
+      : 'http://localhost:5173');
+
+  if (!corsOrigin) {
+    throw new Error('CORS_ORIGIN must be configured in production');
+  }
+
+  app.enableCors({
+    origin: corsOrigin,
+    credentials: true,
+  });
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+    }),
+  );
+
   await app.listen(process.env.PORT ?? 3000);
 }
-bootstrap();
+void bootstrap();
