@@ -10,9 +10,7 @@ interface AuthenticatedRequest {
 }
 
 /**
- * Integration note: req.user.role is not propagated by Auth yet.
- * Later, update src/auth/strategies/jwt.strategy.ts:21-22 in validate()
- * and src/auth/auth.service.ts:79 in the signed JWT payload.
+ * req.user.role is propagated by Auth and can be used for role checks.
  */
 @Injectable()
 export class RolesGuard implements CanActivate {
