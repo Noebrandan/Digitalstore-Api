@@ -8,6 +8,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { Throttle } from '@nestjs/throttler';
+import { Role } from '@prisma/client';
 import { Request } from 'express';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
@@ -19,6 +20,7 @@ interface RequestWithUser extends Request {
   user: {
     userId: string;
     email: string;
+    role: Role;
   };
 }
 

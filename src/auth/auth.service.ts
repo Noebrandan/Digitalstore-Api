@@ -76,7 +76,7 @@ export class AuthService {
       throw new UnauthorizedException('Invalid email or password');
     }
 
-    const payload = { sub: user.id, email: user.email };
+    const payload = { sub: user.id, email: user.email, role: user.role };
     const [accessToken, refreshToken] = await Promise.all([
       this.jwtService.signAsync(payload, {
         secret: this.accessSecret,
@@ -134,7 +134,7 @@ export class AuthService {
     }
 
     const accessToken = await this.jwtService.signAsync(
-      { sub: user.id, email: user.email },
+      { sub: user.id, email: user.email, role: user.role },
       {
         secret: this.accessSecret,
         expiresIn: this.accessExpiresIn,
