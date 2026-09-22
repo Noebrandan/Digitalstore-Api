@@ -9,7 +9,7 @@ Brandan, Noelia Agustina
 ## Repositorio y deploy
 
 - Repositorio: https://github.com/Noebrandan/Digitalstore-Api
-- Deploy: [PENDIENTE]
+- Deploy: digitalstore-api-production-a5d5.up.railway.app
 
 ## Stack
 
